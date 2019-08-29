@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'org.greenrobot.greendao' // apply plugin
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -17,6 +17,19 @@ android {
         }
     }
 }
+//Furthermore, the greendao configuration element supports a host of configuration options:
+    //schemaVersion: The current version of the database schema. This is used by the *OpenHelpers classes to migrate between schema versions. If you change your entity/database schema, this value has to be increased. Defaults to 1.
+    //daoPackage: The package name for generated DAOs, DaoMaster, and DaoSession. Defaults to the package name of your source entities.
+    //targetGenDir: The location where generated sources should be stored at. Defaults to the generated source folder inside the build directory ( build/generated/source/greendao).
+    //generateTests: Set to true to automatically generate unit tests.
+    //targetGenDirTests: The base directory where generated unit tests should be stored at. Defaults to src/androidTest/java
+greendao {
+    schemaVersion 1
+    daoPackage "database" // set package of generated classes
+    targetGenDir "src/main/java/com/lz/android_greendao3_sample"
+    generateTests true
+    targetGenDirTests "src/androidTest/java"
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -25,4 +38,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'org.greenrobot:greendao:3.2.2' // add library
 }
