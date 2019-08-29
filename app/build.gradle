@@ -16,6 +16,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            java {
+                srcDir 'src-gen'
+            }
+            jniLibs {
+                srcDirs = ['libs']
+            }
+        }
+    }
 }
 //Furthermore, the greendao configuration element supports a host of configuration options:
     //schemaVersion: The current version of the database schema. This is used by the *OpenHelpers classes to migrate between schema versions. If you change your entity/database schema, this value has to be increased. Defaults to 1.
@@ -25,8 +35,8 @@ android {
     //targetGenDirTests: The base directory where generated unit tests should be stored at. Defaults to src/androidTest/java
 greendao {
     schemaVersion 1
-    daoPackage "database" // set package of generated classes
-    targetGenDir "src/main/java/com/lz/android_greendao3_sample"
+    daoPackage "com.lz.android_greendao3_sample.dao" // set package of generated classes
+    targetGenDir "src-gen"
     generateTests true
     targetGenDirTests "src/androidTest/java"
 }
